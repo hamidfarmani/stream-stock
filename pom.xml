@@ -11,6 +11,7 @@
   <modules>
     <module>proto</module>
     <module>grpc-service</module>
+    <module>client-service</module>
   </modules>
 
   <properties>

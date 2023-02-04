@@ -12,6 +12,22 @@ public class StockMarketService extends StockMarketServiceImplBase {
   @Override
   public void getRealTimeStockPrices(StockRequest request,
       StreamObserver<StockResponse> responseObserver) {
-    super.getRealTimeStockPrices(request, responseObserver);
+    TempDb.getStockResponsesFromTempDb()
+        .stream()
+            .filter(stockResponse -> stockResponse.getStockSymbol() == request.getStockSymbol())
+                .findFirst()
+                    .ifPresent(responseObserver::onNext);
+    responseObserver.onCompleted();
+  }
+
+  @Override
+  public void getStockPrice(StockRequest request, StreamObserver<StockResponse> responseObserver) {
+    TempDb.getStockResponsesFromTempDb()
+        .stream()
+        .filter(stock -> stock.getStockSymbol().equals(request.getStockSymbol()))
+        .findFirst()
+        .ifPresent(responseObserver::onNext);
+    responseObserver.onCompleted();
+
   }
 }

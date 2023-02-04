@@ -1,0 +1,5 @@
+grpc:
+  client:
+    grpc-hamid-service:
+      address: static://localhost:8084
+      negotiationType: plaintext

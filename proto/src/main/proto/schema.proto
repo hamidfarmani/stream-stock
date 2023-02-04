@@ -4,6 +4,7 @@ package com.hamid;
 
 service StockMarketService {
   rpc GetRealTimeStockPrices (StockRequest) returns (stream StockResponse);
+  rpc getStockPrice (StockRequest) returns (StockResponse);
 }
 
 message StockRequest {
